@@ -1,11 +1,15 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 export PATH=/opt/homebrew/bin:$PATH
 
-# Autojump stuff
+# Pure
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+fpath+=($HOME/.zsh/pure)
+
+# Autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
-# Android studio stuff
+# export PATH="/Users/olivierdijkstra/.local/bin"
+
+# Android studio
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
 alias adb='/Users/$USER/Library/Android/sdk/platform-tools/adb'
@@ -17,12 +21,30 @@ export PATH="$PATH:$HOME/.rvm/bin"
 PYENV_ROOT="$HOME/.pyenv"
 PATH="$PYENV_ROOT/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
+# export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(pyenv init -)"
 eval "$(pyenv init -)"
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+#
+# ALIASES
+#
+alias python='python3'
+alias lg='lazygit'
+alias c='code .'
+
+#
+# PLUGINS
+#
+
+plugins=(
+    git-open
+    zsh-syntax-highlighting
+)
+
+source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# Pure
+autoload -U promptinit; promptinit
+prompt pure
