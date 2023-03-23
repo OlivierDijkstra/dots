@@ -46,3 +46,5 @@ source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-high
 # Pure
 autoload -U promptinit; promptinit
 prompt pure
+
+neofetch

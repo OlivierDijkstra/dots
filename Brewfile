@@ -22,6 +22,7 @@ brew "lazygit"
 brew "libyaml"
 brew "mas"
 brew "mysql", restart_service: true
+brew "neofetch"
 brew "openssl@3"
 brew "poetry"
 brew "postgresql@14"
