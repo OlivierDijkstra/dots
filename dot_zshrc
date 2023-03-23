@@ -40,11 +40,7 @@ alias c='code .'
 #
 # PLUGINS
 #
-
-plugins=(
-    git-open
-    zsh-syntax-highlighting
-)
+plugins=()
 
 source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 # Pure
