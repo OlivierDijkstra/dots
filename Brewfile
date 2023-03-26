@@ -23,6 +23,7 @@ brew "libyaml"
 brew "mas"
 brew "mysql", restart_service: true
 brew "neofetch"
+brew "nvm"
 brew "openssl@3"
 brew "poetry"
 brew "postgresql@14"
@@ -57,6 +58,7 @@ cask "sip"
 cask "slack"
 cask "spotify"
 cask "tableplus"
+cask "ultimaker-cura"
 cask "visual-studio-code"
 mas "Bitwarden", id: 1352778147
 mas "Magnet", id: 441258766
