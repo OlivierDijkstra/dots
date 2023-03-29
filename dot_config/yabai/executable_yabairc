@@ -10,8 +10,7 @@ yabai -m signal --add event=display_removed action="sleep 1 && $HOME/.config/yab
 
 $HOME/.config/yabai/create_spaces.sh
 
-yabai -m config external_bar               all:35:0     \
-                mouse_follows_focus        off          \
+yabai -m config mouse_follows_focus        off          \
                 focus_follows_mouse        off          \
                 window_zoom_persist        off          \
                 window_placement           second_child \
