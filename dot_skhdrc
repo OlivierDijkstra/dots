@@ -1,4 +1,0 @@
-ctrl + alt - left : yabai -m window --swap west
-ctrl + alt - right : yabai -m window --swap east
-ctrl + alt - up : yabai -m window --swap north
-ctrl + alt - down : yabai -m window --swap south

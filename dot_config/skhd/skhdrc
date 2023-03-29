@@ -1,0 +1,8 @@
+# Moving windows around, similar to magnet app
+ctrl + lalt - left : yabai -m window --swap west
+ctrl + lalt - right : yabai -m window --swap east
+ctrl + lalt - up : yabai -m window --swap north
+ctrl + lalt - down : yabai -m window --swap south
+
+# Equalize window sizes
+ctrl + lalt - e : yabai -m space --balance
