@@ -1,7 +1,5 @@
-silent !sh ~/.config/scripts/install_vim_plug.sh
+call plug#begin(stdpath('data') . '/plugged')
 
-call plug#begin()
-
-
+Plug 'github/copilot.vim'
 
 call plug#end()
