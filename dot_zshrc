@@ -1,4 +1,8 @@
+# Homebrew
 export PATH=/opt/homebrew/bin:$PATH
+
+# Setup default editor to neovim
+export EDITOR='nvim'
 
 # Pure
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
@@ -6,8 +10,6 @@ fpath+=($HOME/.zsh/pure)
 
 # Autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-
-# export PATH="/Users/olivierdijkstra/.local/bin"
 
 # Android studio
 export ANDROID_HOME="$HOME/Library/Android/sdk"
@@ -35,6 +37,7 @@ eval "$(pyenv init -)"
 alias python='python3'
 alias lg='lazygit'
 alias c='code .'
+alias ll='llama; clear'
 
 #
 # PLUGINS
@@ -42,6 +45,7 @@ alias c='code .'
 plugins=()
 
 source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
 # Pure
 autoload -U promptinit; promptinit
 prompt pure
