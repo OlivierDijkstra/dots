@@ -10,7 +10,8 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  { -- LSP Configuration & Plugins
+  {
+    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -25,14 +26,16 @@ require('lazy').setup({
     },
   },
 
-  { -- Autocompletion
+  {
+    -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'onsails/lspkind-nvim' },
   },
 
   -- Show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
-  { -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  { 'folke/which-key.nvim',          opts = {} },
+  {
+    -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
@@ -46,44 +49,49 @@ require('lazy').setup({
     },
   },
 
-  { -- Theme
-    'navarasu/onedark.nvim',
-    priority = 1000,
+  {
+    -- Theme
+    'projekt0n/github-nvim-theme',
+    tag = 'v0.0.7',
     config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
+      require('github-theme').setup({
+        theme_style = 'dark_default',
+        dark_sidebar = false,
+      })
+    end
   },
 
-  { -- Statusline
+  {
+    -- Statusline
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'onedark',
         component_separators = '',
         section_separators = '',
       },
       sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch'},
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch' },
         lualine_c = {
           {
             'diagnostics',
-            sources = {'nvim_lsp'},
-            sections = {'error', 'warn', 'info', 'hint'},
-            symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '},
+            sources = { 'nvim_lsp' },
+            sections = { 'error', 'warn', 'info', 'hint' },
+            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
             colored = true,
-            always_visible = true,
+            -- always_visible = true,
           }
         },
-        lualine_x = {'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_x = { 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' }
       },
     },
   },
 
-  { -- Add indentation guides even on blank lines
+  {
+    -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     opts = {
       char = '┊',
@@ -92,16 +100,16 @@ require('lazy').setup({
   },
 
   -- "leader+/" to comment visual regions/lines
-  { 
-    'numToStr/Comment.nvim', 
+  {
+    'numToStr/Comment.nvim',
     opts = {
-        toggler = {
-            line = '<leader>/',
-        }, 
-        opleader = {
-            line = '<leader>/',
-        }
-    } 
+      toggler = {
+        line = '<leader>/',
+      },
+      opleader = {
+        line = '<leader>/',
+      }
+    }
   },
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -121,31 +129,32 @@ require('lazy').setup({
   },
 
   -- File explorer
-  { 
-    'nvim-tree/nvim-tree.lua', 
+  {
+    'nvim-tree/nvim-tree.lua',
     version = "*",
     dependencies = {
-        "nvim-tree/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
-        require("nvim-tree").setup {}
+      require("nvim-tree").setup {}
     end,
   },
 
   -- Bufferline to show open buffers
-  { 
-    'akinsho/bufferline.nvim', 
-    version = "v3.*", 
+  {
+    'akinsho/bufferline.nvim',
+    version = "v3.*",
     config = function()
-        require("bufferline").setup {
-            options = {
-                diagnostics = "nvim_lsp",
-            }
+      require("bufferline").setup {
+        options = {
+          diagnostics = "nvim_lsp",
         }
+      }
     end,
   },
 
-  { -- Highlight, edit, and navigate code
+  {
+    -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
