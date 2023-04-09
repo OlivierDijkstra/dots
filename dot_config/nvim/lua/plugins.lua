@@ -230,5 +230,5 @@ require('lazy').setup({
   },
 
   -- Lazygit caller
-  'kdheepak/lazygit.nvim'
+  'kdheepak/lazygit.nvim',
 }, {})
