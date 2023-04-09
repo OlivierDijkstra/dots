@@ -19,6 +19,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- [[ LazyGit ]]
+vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { desc = '[L]azy [G]it' })
+
 -- [[ LPS ]]
 vim.keymap.set('n', '<leader>p', '<cmd>Format<CR>', { desc = '[P]rettier, or use :Format' })
 

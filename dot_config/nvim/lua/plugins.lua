@@ -195,6 +195,7 @@ require('lazy').setup({
   },
 
   {
+    -- Start screen customizer
     'goolord/alpha-nvim',
     requires = { 'nvim-tree/nvim-web-devicons' },
     config = function()
@@ -226,5 +227,8 @@ require('lazy').setup({
       dashboard.section.footer.val = fortune
       alpha.setup(dashboard.opts)
     end
-  }
+  },
+
+  -- Lazygit caller
+  'kdheepak/lazygit.nvim'
 }, {})
