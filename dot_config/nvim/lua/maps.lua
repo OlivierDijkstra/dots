@@ -2,6 +2,9 @@
 -- Keymaps for better default experience
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- Map q to quit
+vim.keymap.set('n', 'q', '<cmd>q<CR>', { desc = 'Quit' })
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -30,7 +33,8 @@ end, { desc = '[F]ind [H]ere' })
 
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fc', require('telescope.builtin').grep_string, { desc = '[F]ind [C]urrent' })
-vim.keymap.set('n', '<leader>fs', require('telescope.builtin').live_grep, { desc = '[F]ind [S]tring' })
+vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = '[F]ind [W]ord' })
+vim.keymap.set('n', '<leader>fp', ':Telescope projects<CR>', { desc = '[F]ind [P]rojects' })
 
 -- [[ NvimTree ]]
 vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { desc = '[T]oggle NvimTree or [T]ree' })

@@ -33,7 +33,7 @@ require('lazy').setup({
   },
 
   -- Show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -113,7 +113,14 @@ require('lazy').setup({
   },
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+  {
+    'nvim-telescope/telescope.nvim',
+    version = '*',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('telescope').load_extension('projects')
+    end
+  },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -126,6 +133,16 @@ require('lazy').setup({
     cond = function()
       return vim.fn.executable 'make' == 1
     end,
+  },
+
+  {
+    -- Project manager
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require('project_nvim').setup {
+
+      }
+    end
   },
 
   -- File explorer
@@ -175,5 +192,39 @@ require('lazy').setup({
     config = function()
       require('nvim-ts-autotag').setup {}
     end,
+  },
+
+  {
+    'goolord/alpha-nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local alpha = require 'alpha'
+      local dashboard = require 'alpha.themes.dashboard'
+      dashboard.section.header.val = {
+        "                                                     ",
+        "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+        "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+        "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+        "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+        "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+        "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+        "                                                     ",
+      }
+      dashboard.section.buttons.val = {
+        dashboard.button('1', '  Open file tree (<Leader>t)', ':NvimTreeToggle<CR>'),
+        dashboard.button('2', '  Find files (<Leader>ff)', ':Telescope find_files<CR>'),
+        dashboard.button('3', '  Find current word (<Leader>fc)',
+          [[<cmd>lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')})<CR>]]),
+        dashboard.button('4', '  Find word (<Leader>f)', ':Telescope live_grep<CR>'),
+        dashboard.button('5', '  Quit (q)', ':quit<CR>'),
+        dashboard.button('6', '  Open project (<Leader>fp)', ':Telescope projects<CR>'),
+        dashboard.button('7', '  Update plugins', ':Lazy update<CR>'),
+      }
+      local handle = io.popen('fortune')
+      local fortune = handle:read('*a')
+      handle:close()
+      dashboard.section.footer.val = fortune
+      alpha.setup(dashboard.opts)
+    end
   }
 }, {})
