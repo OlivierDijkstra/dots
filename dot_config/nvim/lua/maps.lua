@@ -19,11 +19,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- [[ ToggleTerm ]]
+-- vim.keymap.set('n', '<leader>j', ':ToggleTerm direction=horizontal<CR>', { desc = '[J]ump to terminal' })
+
 -- [[ LazyGit ]]
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { desc = '[L]azy [G]it' })
 
 -- [[ LPS ]]
-vim.keymap.set('n', '<leader>p', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', { desc = '[P]rettier, or use :Format' })
+vim.keymap.set('n', '<leader>p', '<cmd>lua vim.lsp.buf.format { async = true }<CR>',
+{ desc = '[P]rettier, or use :Format' })
 
 -- [[ Telescope ]]
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })

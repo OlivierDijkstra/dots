@@ -60,7 +60,6 @@ require('lazy').setup({
     config = function()
       require('github-theme').setup({
         theme_style = 'dark_default',
-        dark_sidebar = false,
       })
     end
   },
@@ -68,7 +67,9 @@ require('lazy').setup({
   {
     -- Statusline
     'nvim-lualine/lualine.nvim',
+    dependencies = { 'projekt0n/github-nvim-theme' },
     opts = {
+      theme = 'github_dark_default',
       options = {
         icons_enabled = true,
         component_separators = '',
@@ -232,6 +233,19 @@ require('lazy').setup({
     end
   },
 
-  -- Lazygit caller
+  -- LazyGit caller
   'kdheepak/lazygit.nvim',
+
+  -- Terminal toggler
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    opts = {
+      size = 50,
+      open_mapping = [[<c-j>]],
+      hide_numbers = true,
+      direction = 'vertical',
+      shade_terminals = true,
+    }
+  }
 }, {})
