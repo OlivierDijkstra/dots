@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { desc = '[L]azy [G]it' })
 
 -- [[ LPS ]]
-vim.keymap.set('n', '<leader>p', '<cmd>Format<CR>', { desc = '[P]rettier, or use :Format' })
+vim.keymap.set('n', '<leader>p', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', { desc = '[P]rettier, or use :Format' })
 
 -- [[ Telescope ]]
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })

@@ -26,6 +26,9 @@ require('lazy').setup({
     },
   },
 
+  -- Inject LSP
+  'jose-elias-alvarez/null-ls.nvim',
+
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -45,6 +48,7 @@ require('lazy').setup({
         delete = { text = '_' },
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
+        untracked = { text = '' },
       },
     },
   },
@@ -76,7 +80,6 @@ require('lazy').setup({
         lualine_c = {
           {
             'diagnostics',
-            sources = { 'nvim_lsp' },
             sections = { 'error', 'warn', 'info', 'hint' },
             symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
             colored = true,

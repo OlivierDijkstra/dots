@@ -184,7 +184,6 @@ end
 local servers = {
   tsserver = {},
   tailwindcss = {},
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -192,6 +191,35 @@ local servers = {
     },
   },
 }
+
+local lspconfig = require('lspconfig')
+local null_ls = require('null-ls')
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.prettier,
+
+    null_ls.builtins.diagnostics.eslint.with({
+      command = 'eslint',
+      args = { '--stdin', '--fix-dry-run', '--format=json', '--stdin-filename', '$FILENAME' },
+      filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' }
+    })
+  },
+})
+
+lspconfig.tsserver.setup({
+  on_attach = function(client)
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup({ enable_formatting = true })
+    ts_utils.setup_client(client)
+  end,
+})
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -262,16 +290,17 @@ cmp.setup {
   },
   formatting = {
     format = lspkind.cmp_format({
-      mode = 'symbol', -- show only symbol annotations
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      mode = 'symbol',       -- show only symbol annotations
+      maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-      before = function (entry, vim_item)
+      before = function(entry, vim_item)
         return vim_item
       end
     })
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'null-ls' },
     { name = 'luasnip' },
   },
 }
