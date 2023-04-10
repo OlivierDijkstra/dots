@@ -36,6 +36,7 @@ eval "$(pyenv init -)"
 #
 alias python='python3'
 alias lg='lazygit'
+alias nv='nvim'
 
 function ll {
   cd "$(llama "$@")"
