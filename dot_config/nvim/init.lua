@@ -183,6 +183,7 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   tsserver = {},
+  volar = {},
   tailwindcss = {},
   lua_ls = {
     Lua = {

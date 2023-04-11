@@ -19,9 +19,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- [[ ToggleTerm ]]
--- vim.keymap.set('n', '<leader>j', ':ToggleTerm direction=horizontal<CR>', { desc = '[J]ump to terminal' })
-
 -- [[ LazyGit ]]
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { desc = '[L]azy [G]it' })
 
