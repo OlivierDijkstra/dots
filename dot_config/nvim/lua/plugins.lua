@@ -247,5 +247,24 @@ require('lazy').setup({
       direction = 'vertical',
       shade_terminals = true,
     }
+  },
+
+  -- Winbar for to show file and code location, click to go to top
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    opts = {
+    },
+  },
+
+  {
+    'nvim-pack/nvim-spectre',
+    opts = {
+    }
   }
 }, {})

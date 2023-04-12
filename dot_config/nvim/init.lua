@@ -76,6 +76,9 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
+-- Show barbecue by default
+require("barbecue.ui").toggle(true)
+
 -- [[ Configure Treesitter ]]
 require('nvim-treesitter.configs').setup {
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
@@ -188,6 +191,16 @@ local servers = {
     },
   },
 }
+
+-- Edit vim diagnostic options
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  float = { border = 'single' },
+})
+
+-- Automatically open diagnostics on cursor hover
+vim.cmd([[au CursorHold * lua vim.diagnostic.open_float(0,{scope = "cursor"})]])
 
 local lspconfig = require('lspconfig')
 local null_ls = require('null-ls')
