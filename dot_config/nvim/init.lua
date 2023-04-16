@@ -48,6 +48,9 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
+-- Copilot fix
+vim.g.copilot_assume_mapped = true
+
 -- Auto close nvim-tree when it's the last buffer
 vim.api.nvim_create_autocmd("BufEnter", {
   nested = true,
