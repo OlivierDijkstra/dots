@@ -48,6 +48,16 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
+-- Auto close nvim-tree when it's the last buffer
+vim.api.nvim_create_autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
+      vim.cmd "quit"
+    end
+  end
+})
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -70,6 +80,11 @@ require('telescope').setup {
     live_grep = {
       theme = 'dropdown',
     },
+  },
+  extensions = {
+    project = {
+      sync_with_nvim_tree = true,
+    }
   }
 }
 
@@ -77,7 +92,6 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 -- Show barbecue by default
-require("barbecue.ui").toggle(true)
 
 -- [[ Configure Treesitter ]]
 require('nvim-treesitter.configs').setup {
