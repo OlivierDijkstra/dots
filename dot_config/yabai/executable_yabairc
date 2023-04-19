@@ -58,7 +58,6 @@ elif [[ $external_bar_position == "left" ]]; then
    yabai -m config left_padding $(expr $gap_width + $external_bar_height)
 elif [[ $external_bar_position == "right" ]]; then
    yabai -m config right_padding $(expr $gap_width + $external_bar_height)
-
 fi
 
 ### Window rules/exeptions ###
@@ -66,16 +65,6 @@ yabai -m rule --add app="^(Calculator|Software Update|Dictionary|VLC|System Pref
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
-
-### Space labels ###
-yabai -m space 1 --label Code
-yabai -m space 2 --label Text
-yabai -m space 3 --label Web
-yabai -m space 4 --label Idle
-yabai -m space 5 --label Misc
-yabai -m space 6 --label doc
-yabai -m space 7 --label help
-yabai -m space 8 --label music
 
 ### Notify when the yabai config finished loading ###
 echo "yabai configuration loaded.."
