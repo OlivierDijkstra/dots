@@ -209,11 +209,25 @@ local servers = {
   },
 }
 
--- Edit vim diagnostic options
+-- Customize LSP appearance
+local _border = "rounded"
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = _border
+  }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = _border
+  }
+)
+
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
-  float = { border = 'single' },
+  float = { border = _border },
 })
 
 -- Automatically open diagnostics on cursor hover
