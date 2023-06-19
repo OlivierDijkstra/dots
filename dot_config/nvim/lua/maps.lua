@@ -50,14 +50,7 @@ vim.keymap.set('n', '<leader>fh', function()
   })
 end, { desc = '[F]ind [H]ere' })
 
-vim.keymap.set('n', '<leader>ff', function()
-  -- Attempt git_files first before trying find_files
-  local ok, _ = pcall(require('telescope.builtin').git_files)
-  if not ok then
-    require('telescope.builtin').find_files()
-  end
-end, { desc = '[F]ind [F]iles' })
-vim.keymap.set('n', '<leader>fc', require('telescope.builtin').grep_string, { desc = '[F]ind [C]urrent' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = '[F]ind [W]ord' })
 vim.keymap.set('n', '<leader>fp', ':Telescope projects<CR>', { desc = '[F]ind [P]rojects' })
 
@@ -68,4 +61,5 @@ vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { desc = '[T]oggle NvimT
 for i = 1, 9 do
   vim.keymap.set('n', '<leader>' .. i, ':BufferLineGoToBuffer ' .. i .. '<CR>', { desc = 'Switch to buffer ' .. i })
 end
-vim.keymap.set('n', '<leader>x', ':bd<CR>', { desc = '[X]it current buffer' })
+
+vim.keymap.set('n', '<leader>x', ':NvimTreeClose | bd<CR>', { desc = '[X]it current buffer and close Nvim-Tree' })

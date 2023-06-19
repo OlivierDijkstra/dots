@@ -21,7 +21,7 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', opts = {}, tag = "legacy" },
 
       -- Additional lua configuration for vim files and functions
       'folke/neodev.nvim',
@@ -108,14 +108,17 @@ require('lazy').setup({
   -- "leader+/" to comment visual regions/lines
   {
     'numToStr/Comment.nvim',
-    opts = {
-      toggler = {
-        line = '<leader>/',
-      },
-      opleader = {
-        line = '<leader>/',
-      }
-    }
+    config = function()
+      require('Comment').setup({
+        toggler = {
+          line = '<leader>/',
+        },
+        opleader = {
+          line = '<leader>/',
+        },
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      })
+    end
   },
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -196,6 +199,8 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      -- Extending numToStr/Comment.nvim to work with jsx/tsx
+      'JoosepAlviste/nvim-ts-context-commentstring',
     },
     config = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })

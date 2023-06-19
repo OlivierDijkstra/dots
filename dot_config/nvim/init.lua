@@ -1,3 +1,11 @@
+-- Set default tabstop and shiftwidth
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.smarttab = true
+
 -- Set , as the leader key
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
@@ -65,6 +73,17 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--hidden', -- This line makes the search include hidden files.
+      '--ignore-case', -- This line makes the search case-insensitive.
+    },
+    file_ignore_patterns = {".git/*"},
     prompt_prefix = '🔎 ',
     layout_strategy = 'flex',
     file_previewer = require('telescope.previewers').vim_buffer_cat.new,
@@ -79,6 +98,7 @@ require('telescope').setup {
   pickers = {
     find_files = {
       theme = 'dropdown',
+      hidden = true,
     },
     live_grep = {
       theme = 'dropdown',
@@ -154,6 +174,10 @@ require('nvim-treesitter.configs').setup {
       swap_previous = {
         ['<leader>A'] = '@parameter.inner',
       },
+    },
+    -- JoosepAlviste/nvim-ts-context-commentstring
+    context_commentstring = {
+      enable = true,
     },
   },
 }
@@ -292,7 +316,7 @@ mason_lspconfig.setup_handlers {
 -- nvim-cmp setup
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
-local lspkind = require('lspkind')
+local lspkind = require 'lspkind'
 
 luasnip.config.setup {}
 
@@ -308,26 +332,26 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    -- ['<Down>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
+    -- ['<S-Down>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_prev_item()
+    --   elseif luasnip.jumpable(-1) then
+    --     luasnip.jump(-1)
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
   },
   formatting = {
     format = lspkind.cmp_format({
