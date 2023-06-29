@@ -9,6 +9,14 @@ vim.keymap.set('n', 'q', '<cmd>q<CR>', { desc = 'Quit' })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Remap = to + so I don't have to press shift to go to the next line
+vim.keymap.set('n', '=', '+', { silent = true })
+
+-- Shift + - to go to the previous line but skip 5
+vim.keymap.set('n', '_', '5-', { silent = true })
+-- Shift + = to go to the next line but skip 5
+vim.keymap.set('n', '+', '5+', { silent = true })
+
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
