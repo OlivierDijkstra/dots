@@ -80,10 +80,10 @@ require('telescope').setup {
       '--with-filename',
       '--line-number',
       '--column',
-      '--hidden', -- This line makes the search include hidden files.
+      '--hidden',      -- This line makes the search include hidden files.
       '--ignore-case', -- This line makes the search case-insensitive.
     },
-    file_ignore_patterns = {".git/*"},
+    file_ignore_patterns = { ".git/*" },
     prompt_prefix = '🔎 ',
     layout_strategy = 'flex',
     file_previewer = require('telescope.previewers').vim_buffer_cat.new,
@@ -280,7 +280,11 @@ lspconfig.tsserver.setup({
   end,
 })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+lspconfig.volar.setup({
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'vue', 'json' },
+})
+
+local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
