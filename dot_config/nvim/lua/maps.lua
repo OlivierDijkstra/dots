@@ -23,14 +23,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").open()<CR>', {
   desc = "Open [S]earch"
 })
-vim.keymap.set('n', '<leader>sf', '<cmd>lua require("spectre").open_file_search()<CR>', {
-  desc = "[S]earch current [F]ile"
+vim.keymap.set('n', '<leader>sc', '<cmd>lua require("spectre").open_file_search()<CR>', {
+  desc = "[S]earch [C]urrent file"
 })
 vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
   desc = "[S]earch [W]ord"
 })
-vim.keymap.set('n', '<leader>swf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-  desc = "[S]earch [W]ord in current [F]ile"
+vim.keymap.set('n', '<leader>swc', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+  desc = "[S]earch [W]ord in [C]urrent file"
 })
 
 
