@@ -182,6 +182,12 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+require('nvim-treesitter.configs').setup {
+  context_commentstring = {
+    enable = true,
+  },
+}
+
 -- LSP settings.
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
