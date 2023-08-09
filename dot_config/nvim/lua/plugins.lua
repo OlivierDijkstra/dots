@@ -258,6 +258,9 @@ require('lazy').setup({
   -- LazyGit caller
   'kdheepak/lazygit.nvim',
 
+  -- Auto background color
+  { "typicode/bg.nvim", lazy = false },
+
   -- Terminal toggler
   {
     'akinsho/toggleterm.nvim',
