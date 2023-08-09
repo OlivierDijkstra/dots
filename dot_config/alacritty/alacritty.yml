@@ -1,0 +1,24 @@
+env:
+  TERM: xterm-256color
+
+font:
+  normal:
+    family: "JetBrainsMono Nerd Font"
+    style: Regular
+  size: 14.0
+
+# Window Configuration
+window:
+  padding:
+    x: 6
+    y: 6
+  decorations: buttonless
+
+import:
+  # - ~/.config/alacritty/monokai/charcoal.yml
+  # - ~/.config/alacritty/github/dark.yml
+  - ~/.config/alacritty/github/dark-dimmed.yml
+  # - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+  # - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
+  # - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
+  # - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
