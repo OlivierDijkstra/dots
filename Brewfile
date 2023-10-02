@@ -1,8 +1,6 @@
 tap "adoptopenjdk/openjdk"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "koekeishiya/formulae"
 tap "wix/brew"
@@ -42,7 +40,6 @@ brew "julia"
 brew "lazygit"
 brew "libheif"
 brew "libyaml"
-brew "llama"
 brew "mas"
 brew "mysql", restart_service: true
 brew "neofetch"
@@ -89,7 +86,6 @@ cask "visual-studio-code"
 mas "Bitwarden", id: 1352778147
 mas "Keynote", id: 409183694
 mas "Klack", id: 6446206067
-mas "Magnet", id: 441258766
 mas "Notion Web Clipper", id: 1559269364
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
@@ -100,6 +96,7 @@ vscode "dbaeumer.vscode-eslint"
 vscode "eamodio.gitlens"
 vscode "esbenp.prettier-vscode"
 vscode "GitHub.copilot"
+vscode "GitHub.copilot-chat"
 vscode "GitHub.copilot-labs"
 vscode "GitHub.github-vscode-theme"
 vscode "ms-python.python"
