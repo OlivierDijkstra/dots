@@ -25,6 +25,20 @@ vim.o.wrap = false
 -- Copilot fix
 vim.g.copilot_assume_mapped = true
 
+-- Auto close nvim-tree when it's the last buffer
+vim.api.nvim_create_autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
+      vim.cmd "quit"
+    end
+
+    if #vim.api.nvim_list_wins() == 1 and vim.bo.filetype == "spectre_panel" then
+      vim.cmd "quit"
+    end
+  end
+})
+
 -- [[ Leader Key Configuration ]]
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
@@ -52,15 +66,6 @@ require('maps')
 -- Recommended nvim-tree settings
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
--- Auto close nvim-tree when it's the last buffer
-vim.api.nvim_create_autocmd("BufEnter", {
-  nested = true,
-  callback = function()
-    if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
-      vim.cmd "quit"
-    end
-  end
-})
 
 -- [[ Custom Filetypes ]]
 vim.cmd([[

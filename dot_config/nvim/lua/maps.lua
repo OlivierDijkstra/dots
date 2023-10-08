@@ -22,6 +22,20 @@ vim.keymap.set('n', '<S-Up>', '5-', { silent = true })
 -- Shift + Down to go to the next line but skip 5
 vim.keymap.set('n', '<S-Down>', '5+', { silent = true })
 
+-- Custom mappings for 'd' and 'D' to avoid affecting clipboard
+vim.api.nvim_set_keymap('n', 'd', '"_d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'D', '"_D', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'd', '"_d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'D', '"_D', { noremap = true, silent = true })
+
+-- Duplicate current line below with Shift + Alt + Down
+vim.api.nvim_set_keymap('n', '<S-A-Down>', ':t.<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<S-A-Down>', ':t.<CR>gv', { noremap = true, silent = true })
+
+-- Duplicate current line above with Shift + Alt + Up
+vim.api.nvim_set_keymap('n', '<S-A-Up>', ':t-<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<S-A-Up>', ':t-<CR>gv', { noremap = true, silent = true })
+
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
