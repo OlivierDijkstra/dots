@@ -259,7 +259,7 @@ require('lazy').setup({
   'kdheepak/lazygit.nvim',
 
   -- Auto background color
-  { "typicode/bg.nvim", lazy = false },
+  { "typicode/bg.nvim",     lazy = false },
 
   -- Terminal toggler
   {
@@ -289,6 +289,28 @@ require('lazy').setup({
 
   {
     'nvim-pack/nvim-spectre',
+    config = function()
+      require('spectre').setup({
+        live_update = true,
+        mapping = {
+          ['replace_current'] = {
+            map = 'r',
+            cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
+            desc = "Replace current selection only"
+          },
+          ['run_replace'] = {
+            map = "R",
+            cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
+            desc = "replace all"
+          },
+          ['toggle_ignore_case'] = {
+            map = "i",
+            cmd = "<cmd>lua require('spectre').change_options('ignore-case')<CR>",
+            desc = "toggle ignore case"
+          },
+        }
+      })
+    end,
     opts = {
     }
   }

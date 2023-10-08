@@ -17,6 +17,11 @@ vim.keymap.set('n', '_', '5-', { silent = true })
 -- Shift + = to go to the next line but skip 5
 vim.keymap.set('n', '+', '5+', { silent = true })
 
+-- Shift + Up to go to the previous line but skip 5
+vim.keymap.set('n', '<S-Up>', '5-', { silent = true })
+-- Shift + Down to go to the next line but skip 5
+vim.keymap.set('n', '<S-Down>', '5+', { silent = true })
+
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -28,19 +33,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ Spectre ]]
-vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").open()<CR>', {
-  desc = "Open [S]earch"
-})
-vim.keymap.set('n', '<leader>sc', '<cmd>lua require("spectre").open_file_search()<CR>', {
-  desc = "[S]earch [C]urrent file"
-})
-vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
-  desc = "[S]earch [W]ord"
-})
-vim.keymap.set('n', '<leader>swc', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-  desc = "[S]earch [W]ord in [C]urrent file"
-})
+local search_file_command = ':<C-u>NvimTreeClose<CR>:lua require("spectre").open({ search_text = vim.fn.expand("<cword>"), cwd = vim.fn.expand("%:p:h"), is_close = true })<CR>'
+local search_all_command = ':<C-u>NvimTreeClose<CR>:lua require("spectre").open({ search_text = vim.fn.expand("<cword>"), cwd = "", is_close = true })<CR>'
 
+vim.keymap.set('v', 's', search_file_command, { silent = true })
+vim.keymap.set('v', 'S', search_all_command, { silent = true })
+
+-- now for normal mode, use leader+s and leader+S, do the exact same commands
+vim.keymap.set('n', '<leader>s', search_file_command, { silent = true })
+vim.keymap.set('n', '<leader>S', search_all_command, { silent = true })
 
 -- [[ LazyGit ]]
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { desc = '[L]azy [G]it' })

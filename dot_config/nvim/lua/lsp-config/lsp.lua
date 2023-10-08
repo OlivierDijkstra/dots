@@ -31,6 +31,7 @@ null_ls.setup({
 })
 
 lspconfig.tsserver.setup({
+  filetypes = {"typescript", "typescriptreact", "typescript.tsx"},
   on_attach = function(client)
     local ts_utils = require("nvim-lsp-ts-utils")
     ts_utils.setup({ enable_formatting = true })
@@ -39,7 +40,7 @@ lspconfig.tsserver.setup({
 })
 
 lspconfig.volar.setup({
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'vue', 'json' },
+  filetypes = { 'vue' },
 })
 
 lspconfig.julials.setup({
