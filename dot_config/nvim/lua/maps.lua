@@ -101,6 +101,9 @@ end, { desc = '[F]ind [W]ord' })
 vim.keymap.set('n', '<leader>fp', ':Telescope projects<CR>', { desc = '[F]ind [P]rojects' })
 vim.keymap.set('n', '<leader>fs', require('telescope.builtin').lsp_document_symbols, { desc = '[F]ind [S]ymbols' })
 
+local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+vim.keymap.set("v", "fw", live_grep_args_shortcuts.grep_visual_selection)
+
 -- [[ NvimTree ]]
 vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { desc = '[T]oggle NvimTree or [T]ree' })
 
