@@ -1,3 +1,6 @@
+# Hides 'Last Login' message
+printf '\33c\e[3J'
+
 # Homebrew
 export PATH=/opt/homebrew/bin:$PATH
 
@@ -24,12 +27,16 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 eval "$(pyenv init -)"
 eval "$(pyenv init -)"
 
+# Android Studio
+alias adb="/Users/oli/Library/Android/sdk/platform-tools/adb"
+
 #
 # ALIASES
 #
 alias python='python3'
 alias lg='lazygit'
 alias nv='nvim'
+alias am='bash ~/.config/applemusic/am.sh'
 
 function ll {
   cd "$(llama "$@")"
