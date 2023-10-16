@@ -42,6 +42,18 @@ vim.keymap.set('x', "'", '<Esc>`>a\'<Esc>`<i\'<Esc>', { silent = true })
 -- Wrap visual selection with double quotes
 vim.keymap.set('x', '"', '<Esc>`>a"<Esc>`<i"<Esc>', { silent = true })
 
+-- Wrap visual selection in backticks
+vim.keymap.set('x', '`', '<Esc>`>a`<Esc>`<i`<Esc>', { silent = true })
+
+-- Wrap visual selection in brackets
+vim.keymap.set('x', '[', '<Esc>`>a]<Esc>`<i[<Esc>', { silent = true })
+
+-- Wrap visual selection in parentheses
+vim.keymap.set('x', '(', '<Esc>`>a)<Esc>`<i(<Esc>', { silent = true })
+
+-- Wrap visual selection in braces
+vim.keymap.set('x', '{', '<Esc>`>a}<Esc>`<i{<Esc>', { silent = true })
+
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
