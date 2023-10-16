@@ -20,6 +20,7 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 vim.o.wrap = false
+vim.o.cursorline = true
 
 -- [[ Miscellaneous ]]
 -- Copilot fix

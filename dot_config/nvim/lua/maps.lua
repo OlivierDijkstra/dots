@@ -13,14 +13,14 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '=', '+', { silent = true })
 
 -- Shift + - to go to the previous line but skip 5
-vim.keymap.set('n', '_', '5-', { silent = true })
+vim.keymap.set({'n', 'v'}, '_', '5-', { silent = true })
 -- Shift + = to go to the next line but skip 5
-vim.keymap.set('n', '+', '5+', { silent = true })
+vim.keymap.set({'n', 'v'}, '+', '5+', { silent = true })
 
 -- Shift + Up to go to the previous line but skip 5
-vim.keymap.set('n', '<S-Up>', '5-', { silent = true })
+vim.keymap.set({'n', 'v'}, '<S-Up>', '5-', { silent = true })
 -- Shift + Down to go to the next line but skip 5
-vim.keymap.set('n', '<S-Down>', '5+', { silent = true })
+vim.keymap.set({'n', 'v'}, '<S-Down>', '5+', { silent = true })
 
 -- Custom mappings for 'd' and 'D' to avoid affecting clipboard
 vim.api.nvim_set_keymap('n', 'd', '"_d', { noremap = true, silent = true })
@@ -35,6 +35,12 @@ vim.api.nvim_set_keymap('v', '<S-A-Down>', ':t.<CR>gv', { noremap = true, silent
 -- Duplicate current line above with Shift + Alt + Up
 vim.api.nvim_set_keymap('n', '<S-A-Up>', ':t-<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<S-A-Up>', ':t-<CR>gv', { noremap = true, silent = true })
+
+-- Wrap visual selection with single quotes
+vim.keymap.set('x', "'", '<Esc>`>a\'<Esc>`<i\'<Esc>', { silent = true })
+
+-- Wrap visual selection with double quotes
+vim.keymap.set('x', '"', '<Esc>`>a"<Esc>`<i"<Esc>', { silent = true })
 
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -61,6 +67,8 @@ vim.keymap.set('n', '<leader>S', search_all_command, { silent = true })
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { desc = '[L]azy [G]it' })
 
 -- [[ LPS ]]
+vim.keymap.set('n', 'k', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = 'Show [K]ind' })
+
 vim.keymap.set('n', '<leader>p', '<cmd>lua vim.lsp.buf.format { async = true }<CR>',
   { desc = '[P]rettier, or use :Format' })
 
@@ -74,8 +82,12 @@ vim.keymap.set('n', '<leader>fh', function()
 end, { desc = '[F]ind [H]ere' })
 
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
-vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = '[F]ind [W]ord' })
+-- vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = '[F]ind [W]ord' })
+vim.keymap.set('n', '<leader>fw', function()
+  require('telescope').extensions.live_grep_args.live_grep_args()
+end, { desc = '[F]ind [W]ord' })
 vim.keymap.set('n', '<leader>fp', ':Telescope projects<CR>', { desc = '[F]ind [P]rojects' })
+vim.keymap.set('n', '<leader>fs', require('telescope.builtin').lsp_document_symbols, { desc = '[F]ind [S]ymbols' })
 
 -- [[ NvimTree ]]
 vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { desc = '[T]oggle NvimTree or [T]ree' })

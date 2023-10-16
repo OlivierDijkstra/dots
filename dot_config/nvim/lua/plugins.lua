@@ -39,6 +39,7 @@ require('lazy').setup({
 
   -- Show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
+
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -90,8 +91,8 @@ require('lazy').setup({
           }
         },
         lualine_x = { 'filetype' },
-        lualine_y = { 'progress' },
-        lualine_z = { 'location' }
+        lualine_y = {},
+        lualine_z = {}
       },
     },
   },
@@ -99,6 +100,7 @@ require('lazy').setup({
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
+    tag = 'v2.20.8',
     opts = {
       char = '┊',
       show_trailing_blankline_indent = false,
@@ -125,10 +127,15 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     version = '*',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('telescope').load_extension('projects')
-    end
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+        -- This will not install any breaking changes.
+        -- For major updates, this must be adjusted manually.
+        version = "^1.0.0",
+      },
+    },
   },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -238,14 +245,15 @@ require('lazy').setup({
         "                                                     ",
       }
       dashboard.section.buttons.val = {
-        dashboard.button('1', '  Open file tree (<Leader>t)', ':NvimTreeToggle<CR>'),
-        dashboard.button('2', '  Find files (<Leader>ff)', ':Telescope find_files<CR>'),
-        dashboard.button('3', '  Find current word (<Leader>fc)',
-          [[<cmd>lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')})<CR>]]),
-        dashboard.button('4', '  Find word (<Leader>f)', ':Telescope live_grep<CR>'),
-        dashboard.button('5', '  Quit (q)', ':quit<CR>'),
-        dashboard.button('6', '  Open project (<Leader>fp)', ':Telescope projects<CR>'),
-        dashboard.button('7', '  Update plugins', ':Lazy update<CR>'),
+        dashboard.button('1', '🌳 Open file tree (<Leader>t)', ':NvimTreeToggle<CR>'),
+        dashboard.button('2', '📁 Find files (<Leader>ff)', ':Telescope find_files<CR>'),
+        -- dashboard.button('3', '💬 Find current word (<Leader>fc)',
+        -- [[<cmd>lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')})<CR>]]),
+        dashboard.button('3', '💬 Find word (<Leader>fw)',
+          ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>'),
+        dashboard.button('4', '🚪 Quit (q)', ':quit<CR>'),
+        dashboard.button('5', '📚 Open project (<Leader>fp)', ':Telescope projects<CR>'),
+        dashboard.button('6', '🔄 Update plugins', ':Lazy update<CR>'),
       }
       local handle = io.popen('fortune')
       local fortune = handle:read('*a')
@@ -286,7 +294,7 @@ require('lazy').setup({
     opts = {
     },
   },
-
+--
   {
     'nvim-pack/nvim-spectre',
     config = function()

@@ -1,5 +1,8 @@
 local telescope = require('telescope')
 
+telescope.load_extension('projects')
+telescope.load_extension("live_grep_args")
+
 telescope.setup {
   defaults = {
     vimgrep_arguments = {
@@ -9,7 +12,6 @@ telescope.setup {
       '--with-filename',
       '--line-number',
       '--column',
-      '--hidden',      -- This line makes the search include hidden files.
       '--ignore-case', -- This line makes the search case-insensitive.
     },
     file_ignore_patterns = { ".git/*" },
@@ -29,13 +31,13 @@ telescope.setup {
       theme = 'dropdown',
       hidden = true,
     },
-    live_grep = {
-      theme = 'dropdown',
-    },
   },
   extensions = {
     project = {
       sync_with_nvim_tree = true,
+    },
+    live_grep_args = {
+      auto_quoting = true,
     }
   }
 }
