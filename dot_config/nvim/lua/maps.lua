@@ -36,6 +36,14 @@ vim.api.nvim_set_keymap('v', '<S-A-Down>', ':t.<CR>gv', { noremap = true, silent
 vim.api.nvim_set_keymap('n', '<S-A-Up>', ':t-<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<S-A-Up>', ':t-<CR>gv', { noremap = true, silent = true })
 
+-- First unmap [ ] { } and ( ) from visual mode so they don't get overwritten
+vim.api.nvim_set_keymap('v', '[', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ']', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '{', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '}', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '(', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ')', '<Nop>', { noremap = true, silent = true })
+
 -- Wrap visual selection with single quotes
 vim.keymap.set('x', "'", '<Esc>`>a\'<Esc>`<i\'<Esc>', { silent = true })
 
@@ -47,12 +55,15 @@ vim.keymap.set('x', '`', '<Esc>`>a`<Esc>`<i`<Esc>', { silent = true })
 
 -- Wrap visual selection in brackets
 vim.keymap.set('x', '[', '<Esc>`>a]<Esc>`<i[<Esc>', { silent = true })
+vim.keymap.set('x', ']', '<Esc>`>a]<Esc>`<i[<Esc>', { silent = true })
 
 -- Wrap visual selection in parentheses
 vim.keymap.set('x', '(', '<Esc>`>a)<Esc>`<i(<Esc>', { silent = true })
+vim.keymap.set('x', ')', '<Esc>`>a)<Esc>`<i(<Esc>', { silent = true })
 
 -- Wrap visual selection in braces
 vim.keymap.set('x', '{', '<Esc>`>a}<Esc>`<i{<Esc>', { silent = true })
+vim.keymap.set('x', '}', '<Esc>`>a}<Esc>`<i{<Esc>', { silent = true })
 
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
