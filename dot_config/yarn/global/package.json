@@ -1,21 +1,11 @@
 {
   "dependencies": {
-    "create-next-app": "^13.3.1",
-    "create-vite": "^4.3.2",
-    "create-vitebook": "^0.100.5",
-    "eas-cli": "^3.9.2",
-    "eslint": "^8.38.0",
-    "eslint_d": "^12.2.1",
-    "expo-cli": "^6.0.8",
+    "@volar/vue-language-server": "^1.6.5",
+    "@vue/cli": "^5.0.8",
+    "create-vite": "^4.4.1",
+    "eslint": "^8.46.0",
     "ios-deploy": "^1.12.2",
-    "neovim": "^4.10.1",
-    "prettier": "^2.8.7",
-    "tailwindcss-language-server": "^0.0.1",
-    "turbo": "^1.8.5",
-    "typescript": "^5.0.3",
-    "typescript-language-server": "^3.3.1",
-    "vercel": "^29.0.3",
-    "vls": "^0.8.5",
-    "volar": "^0.0.0"
+    "typescript": "^5.2.2",
+    "vercel": "^30.2.3"
   }
 }
