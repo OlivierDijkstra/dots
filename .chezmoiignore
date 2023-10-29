@@ -1,6 +1,6 @@
-yarn/
-skhd/
-yabai/
-alacritty/
+.config/yarn/
+.config/skhd/
+.config/yabai/
+.config/alacritty/
 .zshrc
 Brewfile
