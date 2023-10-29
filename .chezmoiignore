@@ -1,6 +1,8 @@
+{{- if ne .chezmoi.os "windows" }}
 .config/yarn/
 .config/skhd/
 .config/yabai/
 .config/alacritty/
 .zshrc
 Brewfile
+{{- end }}
