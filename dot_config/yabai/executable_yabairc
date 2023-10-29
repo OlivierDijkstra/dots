@@ -10,7 +10,7 @@ export layout="bsp"                     # Layout of windows                     
 export gap_width="8"                   # width of window gaps                                            (usage: 17/8/any number)
 export animation_duration="1"           # Window animation duration                                       (usage: 0.0/0.3/0.5)
 export autoraise_toggle="off"            # Determines if focus should be on hover                          (usage: on/off)
-
+export displayOrigin="focused"         # Determines where the display origin is                           (usage: default/focused/cursor)
 
 ### Load scripting addition ##
 sudo yabai --load-sa
@@ -36,6 +36,7 @@ yabai -m config mouse_modifier $mouse_mod                        # make cmd the 
 yabai -m config layout $layout                                   # set layout (configured in variables)
 yabai -m config window_animation_duration $animation_duration    # Set animation duration (configured in variables)
 yabai -m config window_animation_frame_rate 120                  # Set animation frame rate
+yabai -m config window_origin_display $displayOrigin             # Set display origin (configured in variables)
 
 ### Configure opacity based focus ###
 yabai -m config window_opacity             $opacity_toggle      # Turn on/off opacity based focus (configured in variables)
