@@ -37,6 +37,7 @@ alias python='python3'
 alias lg='lazygit'
 alias nv='nvim'
 alias am='bash ~/.config/applemusic/am.sh'
+alias neofetch='neofetch --source /Users/oli/.config/neofetch/ascii.txt'
 
 function ll {
   cd "$(llama "$@")"
