@@ -20,21 +20,15 @@ local null_ls = require('null-ls')
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.prettier,
-
-    null_ls.builtins.diagnostics.eslint.with({
-      command = 'eslint',
-      args = { '--stdin', '--fix-dry-run', '--format=json', '--stdin-filename', '$FILENAME' },
-      filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' }
-    })
+    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.diagnostics.eslint_d,
   },
 })
 
 lspconfig.tsserver.setup({
-  filetypes = {"typescript", "typescriptreact", "typescript.tsx"},
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   on_attach = function(client)
     local ts_utils = require("nvim-lsp-ts-utils")
-    ts_utils.setup({ enable_formatting = true })
     ts_utils.setup_client(client)
   end,
 })

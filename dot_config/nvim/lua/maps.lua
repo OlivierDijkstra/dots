@@ -13,14 +13,14 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '=', '+', { silent = true })
 
 -- Shift + - to go to the previous line but skip 5
-vim.keymap.set({'n', 'v'}, '_', '5-', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '_', '5-', { silent = true })
 -- Shift + = to go to the next line but skip 5
-vim.keymap.set({'n', 'v'}, '+', '5+', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '+', '5+', { silent = true })
 
 -- Shift + Up to go to the previous line but skip 5
-vim.keymap.set({'n', 'v'}, '<S-Up>', '5-', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<S-Up>', '5-', { silent = true })
 -- Shift + Down to go to the next line but skip 5
-vim.keymap.set({'n', 'v'}, '<S-Down>', '5+', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<S-Down>', '5+', { silent = true })
 
 -- Custom mappings for 'd' and 'D' to avoid affecting clipboard
 vim.api.nvim_set_keymap('n', 'd', '"_d', { noremap = true, silent = true })
@@ -76,8 +76,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ Spectre ]]
-local search_file_command = ':<C-u>NvimTreeClose<CR>:lua require("spectre").open({ search_text = vim.fn.expand("<cword>"), cwd = vim.fn.expand("%:p:h"), is_close = true })<CR>'
-local search_all_command = ':<C-u>NvimTreeClose<CR>:lua require("spectre").open({ search_text = vim.fn.expand("<cword>"), cwd = "", is_close = true })<CR>'
+local search_file_command =
+':<C-u>NvimTreeClose<CR>:lua require("spectre").open({ search_text = vim.fn.expand("<cword>"), cwd = vim.fn.expand("%:p:h"), is_close = true })<CR>'
+local search_all_command =
+':<C-u>NvimTreeClose<CR>:lua require("spectre").open({ search_text = vim.fn.expand("<cword>"), cwd = "", is_close = true })<CR>'
 
 vim.keymap.set('v', 's', search_file_command, { silent = true })
 vim.keymap.set('v', 'S', search_all_command, { silent = true })
@@ -92,7 +94,8 @@ vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { desc = '[L]azy [G]it' })
 -- [[ LPS ]]
 vim.keymap.set('n', 'k', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = 'Show [K]ind' })
 
-vim.keymap.set('n', '<leader>p', '<cmd>lua vim.lsp.buf.format { async = true }<CR>',
+vim.keymap.set('n', '<leader>p',
+  '<cmd>lua vim.lsp.buf.format { async = true, filter = function(client) return client.name ~= "volar" end }<CR>',
   { desc = '[P]rettier, or use :Format' })
 
 -- [[ Telescope ]]
