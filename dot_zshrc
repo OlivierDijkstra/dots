@@ -40,7 +40,7 @@ alias am='bash ~/.config/applemusic/am.sh'
 alias neofetch='neofetch --source /Users/oli/.config/neofetch/ascii.txt'
 
 function ll {
-  cd "$(llama "$@")"
+  cd "$(walk "$@")"
 }
 
 #
