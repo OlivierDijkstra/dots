@@ -54,4 +54,20 @@ function M.get_package_version(package_name)
     return nil -- package version not determined
 end
 
+function M.package_is_installed(package_name)
+    local package_json_path = vim.fn.getcwd() .. '/package.json'
+    local package_json = vim.fn.readfile(package_json_path)
+
+    if #package_json == 0 then
+        return false -- package.json not found
+    end
+
+    local package_data = vim.fn.json_decode(table.concat(package_json, ""))
+    if package_data.dependencies and package_data.dependencies[package_name] then
+        return true
+    end
+
+    return false
+end
+
 return M
