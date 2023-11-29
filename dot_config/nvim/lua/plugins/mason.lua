@@ -52,7 +52,7 @@ return { {
       if is_node_project then
         local vue_is_installed = utils.package_is_installed("vue")
 
-        if not vue_is_installed then
+        if vue_is_installed then
           if server == "vuels" then
             local vue_version = get_vue_version()
             if vue_version == 3 then
