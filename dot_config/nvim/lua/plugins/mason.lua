@@ -2,6 +2,7 @@ local preferred_servers = {
   python = "pyright",
   javascript = "tsserver",
   typescript = "tsserver",
+  typescriptreact = "tsserver",
   vue = "vuels",
   css = "cssls",
   html = "html",
@@ -151,7 +152,6 @@ return { {
 
       -- If no preferred server is defined, check available servers
       if not preferred_server_name then
-        vim.notify_once(string.format("No preferred server for [%s]", filetype), vim.log.levels.INFO)
         local installed_servers = get_servers_by_filetype(filetype)
 
         if vim.tbl_count(installed_servers) == 0 then
