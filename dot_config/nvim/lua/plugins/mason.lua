@@ -116,6 +116,7 @@ return { {
     end
 
     local function ensure_lsp_server(filetype)
+      vim.notify("Ensuring LSP server for " .. filetype, vim.log.levels.INFO)
       if filetype == "" then
         return
       end
@@ -152,13 +153,13 @@ return { {
 
       -- If no preferred server is defined, check available servers
       if not preferred_server_name then
-        local installed_servers = get_servers_by_filetype(filetype)
+        local installed_servers = get_servers_by_filetype(filetype) or {} -- Ensure it's a table
 
         if vim.tbl_count(installed_servers) == 0 then
           vim.schedule(function()
             vim.cmd("LspInstall")
           end)
-          return
+        return
         end
       end
 

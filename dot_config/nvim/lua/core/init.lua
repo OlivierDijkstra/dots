@@ -19,6 +19,8 @@ opt.smartindent = true
 opt.autoindent = true
 -- Use smart tab behavior (insertion/deletion)
 opt.smarttab = true
+-- Shorten messages returned when running commands
+opt.shortmess:append("FWx")
 
 -- [[ Search and Case Sensitivity ]]
 -- Do not highlight all matches for a search
