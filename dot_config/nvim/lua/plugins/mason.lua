@@ -116,7 +116,6 @@ return { {
     end
 
     local function ensure_lsp_server(filetype)
-      vim.notify("Ensuring LSP server for " .. filetype, vim.log.levels.INFO)
       if filetype == "" then
         return
       end
@@ -157,9 +156,11 @@ return { {
 
         if vim.tbl_count(installed_servers) == 0 then
           vim.schedule(function()
-            vim.cmd("LspInstall")
+            -- vim.cmd("LspInstall")
+            vim.notify("No LSP server is installed for " .. filetype .. ". Please run :LspInstall to install one.",
+              vim.log.levels.WARN)
           end)
-        return
+          return
         end
       end
 
@@ -168,7 +169,7 @@ return { {
         local vue_version = get_vue_version()
         if vue_version then
           local vue_server = vue_version == 3 and "volar" or
-              "vuels"       -- Example: volar for Vue 3, vetur for Vue 2
+              "vuels" -- Example: volar for Vue 3, vetur for Vue 2
           preferred_server_name = vue_server
         end
       end
