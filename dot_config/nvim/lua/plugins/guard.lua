@@ -5,6 +5,7 @@ return {
     dependencies = {
       "nvimdev/guard-collection",
     },
+    event = "User FileOpened",
     config = function()
       local ft = require('guard.filetype')
 
