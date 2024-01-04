@@ -168,9 +168,11 @@ return { {
       if filetype == "vue" then
         local vue_version = get_vue_version()
         if vue_version then
-          local vue_server = vue_version == 3 and "volar" or
-              "vuels" -- Example: volar for Vue 3, vetur for Vue 2
-          preferred_server_name = vue_server
+          if vue_version == 3 then
+            preferred_server_name = "volar"
+          else
+            preferred_server_name = "vuels"
+          end
         end
       end
 

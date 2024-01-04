@@ -40,17 +40,30 @@ function M.get_package_version(package_name)
     end
 
     local package_data = vim.fn.json_decode(table.concat(package_json, ""))
-    if package_data.dependencies and package_data.dependencies[package_name] then
-        local package_version = package_data.dependencies[package_name]
 
-        local version_to_table = M.version_to_table
-        local package_version_table = version_to_table(package_version)
+    -- Function to extract package version
+    local function extract_version(dependency_field)
+        if package_data[dependency_field] and package_data[dependency_field][package_name] then
+            local package_version = package_data[dependency_field][package_name]
+            local version_to_table = M.version_to_table
+            local package_version_table = version_to_table(package_version)
+            return package_version_table
+        end
+    end
 
-        return package_version_table
+    -- Check in dependencies
+    local version = extract_version("dependencies")
+    if version then
+        return version
+    end
+
+    -- Check in peerDependencies
+    version = extract_version("peerDependencies")
+    if version then
+        return version
     end
 
     vim.notify(package_name .. " version not determined", vim.log.levels.INFO)
-
     return nil -- package version not determined
 end
 
@@ -63,7 +76,19 @@ function M.package_is_installed(package_name)
     end
 
     local package_data = vim.fn.json_decode(table.concat(package_json, ""))
-    if package_data.dependencies and package_data.dependencies[package_name] then
+
+    -- Function to check package existence in a given dependency field
+    local function is_package_in(dependency_field)
+        return package_data[dependency_field] and package_data[dependency_field][package_name] ~= nil
+    end
+
+    -- Check in dependencies
+    if is_package_in("dependencies") then
+        return true
+    end
+
+    -- Check in peerDependencies
+    if is_package_in("peerDependencies") then
         return true
     end
 
