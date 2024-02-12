@@ -3,7 +3,7 @@ local preferred_servers = {
   javascript = "tsserver",
   typescript = "tsserver",
   typescriptreact = "tsserver",
-  vue = "vuels",
+  vue = "volar",
   css = "cssls",
   html = "html",
   json = "jsonls",
@@ -171,7 +171,7 @@ return { {
           if vue_version == 3 then
             preferred_server_name = "volar"
           else
-            preferred_server_name = "vuels"
+            preferred_server_name = "volar"
           end
         end
       end

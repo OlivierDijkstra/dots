@@ -5,3 +5,5 @@ for i = 1, 9 do
         desc = 'Switch to buffer ' .. i
     })
 end
+
+keymap('n', '<leader>n', ':enew<CR>', {desc = 'New buffer'})

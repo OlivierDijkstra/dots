@@ -17,3 +17,5 @@ require('plugins.maps.telescope')
 require('plugins.maps.bufferline')
 require('plugins.maps.nvim-tree')
 require('plugins.maps.spectre')
+
+vim.cmd.colorscheme('vesper')

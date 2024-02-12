@@ -33,6 +33,11 @@ end
 
 function M.get_package_version(package_name)
     local package_json_path = vim.fn.getcwd() .. '/package.json'
+
+    if vim.fn.filereadable(package_json_path) == 0 then
+        return nil -- package.json not found
+    end
+
     local package_json = vim.fn.readfile(package_json_path)
 
     if #package_json == 0 then

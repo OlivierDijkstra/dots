@@ -4,6 +4,7 @@ return { {
     event = "User FileOpened",
     config = function()
         require("bufferline").setup {
+            -- highlights = require('vesper').bufferline.highlights,
             options = {
                 diagnostics = "nvim_lsp"
             }

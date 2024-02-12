@@ -6,7 +6,7 @@ return {
         local utils = require('core.utils')
 
         lua_line.setup({
-            theme = 'auto',
+            -- theme = 'vesper',
             options = {
                 icons_enabled = true,
                 component_separators = '',

@@ -9,73 +9,72 @@ local function load_plugin_config(name)
 end
 
 require('lazy').setup({
-  -- Theme
-  load_plugin_config('catppuccin'),
+    -- Theme
+    -- load_plugin_config('poimandres'),
+    { 'datsfilipe/vesper.nvim' },
 
-  -- Logging
-  load_plugin_config('notify'),
+    -- Logging
+    load_plugin_config('notify'),
 
-  -- LSP
-  load_plugin_config('lspconfig'),
-  load_plugin_config('mason'),
-  load_plugin_config('nvim-cmp'),
+    -- LSP
+    load_plugin_config('lspconfig'),
+    load_plugin_config('mason'),
+    load_plugin_config('nvim-cmp'),
 
-  -- Core
-  load_plugin_config('plenary'),
-  load_plugin_config('treesitter'),
+    -- Core
+    load_plugin_config('plenary'),
+    load_plugin_config('treesitter'),
+    load_plugin_config('auto-session'),
 
-  -- UI
-  load_plugin_config('lualine'),
-  load_plugin_config('nvim-tree'),
-  load_plugin_config('which_key'),
-  load_plugin_config('telescope'),
-  load_plugin_config('spectre'),
-  load_plugin_config('alpha'),
-  load_plugin_config('bufferline'),
-  {
-    "typicode/bg.nvim",
-    lazy = false
-  },
-  {
-    "nvim-tree/nvim-web-devicons",
-    lazy = true
-  },
-
-
-
-  -- Utils
-  {
-    'github/copilot.vim',
-    lazy = true,
-    event = 'User FileOpened'
-  },
-  load_plugin_config('comment'),
-  load_plugin_config('autopairs'),
-  load_plugin_config('illuminate'),
-  load_plugin_config('barbecue'),
-  load_plugin_config('project'),
-  load_plugin_config('guard'),
-  {
-    'tpope/vim-sleuth',
-    lazy = true,
-    event = 'User FileOpened'
-  },
-  {
-    'windwp/nvim-ts-autotag',
-  },
-  {
-    "kdheepak/lazygit.nvim",
-    cmd = "LazyGit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
+    -- UI
+    load_plugin_config('lualine'),
+    load_plugin_config('nvim-tree'),
+    load_plugin_config('which_key'),
+    load_plugin_config('telescope'),
+    load_plugin_config('spectre'),
+    load_plugin_config('alpha'),
+    load_plugin_config('bufferline'),
+    {
+      "typicode/bg.nvim",
+      lazy = false
     },
-  },
-}, {
-  ui = {
-    size = { width = 0.6, height = 0.6 },
-    border = 'rounded'
-  },
-  git = {
-    timeout = 9000
-  }
-})
+    {
+      "nvim-tree/nvim-web-devicons",
+      lazy = true
+    },
+
+    -- Utils
+    {
+      'github/copilot.vim',
+      lazy = true,
+      event = 'User FileOpened'
+    },
+    load_plugin_config('comment'),
+    load_plugin_config('autopairs'),
+    load_plugin_config('illuminate'),
+    load_plugin_config('barbecue'),
+    load_plugin_config('project'),
+    load_plugin_config('guard'),
+    {
+      'tpope/vim-sleuth',
+      lazy = true,
+      event = 'User FileOpened'
+    },
+    { 'windwp/nvim-ts-autotag' },
+    {
+      "kdheepak/lazygit.nvim",
+      cmd = "LazyGit",
+      dependencies = { "nvim-lua/plenary.nvim" }
+    } },
+  {
+    ui = {
+      size = {
+        width = 0.6,
+        height = 0.6
+      },
+      border = 'rounded'
+    },
+    git = {
+      timeout = 9000
+    }
+  })
