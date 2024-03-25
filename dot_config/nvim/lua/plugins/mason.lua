@@ -38,40 +38,7 @@ return { {
     local utils = require('core.utils')
     local lspconfig = require('lspconfig')
 
-    local function get_vue_version()
-      local package_version = utils.get_package_version("vue")
-      if package_version then
-        return package_version.major
-      end
-
-      return nil
-    end
-
     local default_setup = function(server)
-      local is_node_project = utils.file_exists_in_project({ 'package.json' })
-
-      if is_node_project then
-        local vue_is_installed = utils.package_is_installed("vue")
-
-        if vue_is_installed then
-          if server == "vuels" then
-            local vue_version = get_vue_version()
-            if vue_version == 3 then
-              vim.notify("Using Volar for Vue 3", vim.log.levels.INFO)
-              return
-            end
-          end
-
-          if server == 'volar' then
-            local vue_version = get_vue_version()
-            if vue_version == 2 then
-              vim.notify("Using Vetur for Vue 2", vim.log.levels.INFO)
-              return
-            end
-          end
-        end
-      end
-
       lspconfig[server].setup({
         capabilities = lsp_capabilities
       })
@@ -161,18 +128,6 @@ return { {
               vim.log.levels.WARN)
           end)
           return
-        end
-      end
-
-      -- Install correct Vue server if Vue file
-      if filetype == "vue" then
-        local vue_version = get_vue_version()
-        if vue_version then
-          if vue_version == 3 then
-            preferred_server_name = "volar"
-          else
-            preferred_server_name = "volar"
-          end
         end
       end
 

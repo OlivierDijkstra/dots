@@ -55,6 +55,7 @@ require('lazy').setup({
     load_plugin_config('barbecue'),
     load_plugin_config('project'),
     load_plugin_config('guard'),
+    load_plugin_config('git-blame'),
     {
       'tpope/vim-sleuth',
       lazy = true,
