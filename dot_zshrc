@@ -1,8 +1,11 @@
 # Hides 'Last Login' message
 printf '\33c\e[3J'
 
+source ~/.zsh-env-vars
+
 # Homebrew
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=~/.composer/vendor/bin:$PATH
 
 # Setup default editor to neovim
 export EDITOR='nvim'
@@ -27,8 +30,8 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 eval "$(pyenv init -)"
 eval "$(pyenv init -)"
 
-# Android Studio
-alias adb="/Users/oli/Library/Android/sdk/platform-tools/adb"
+# Cargo
+export PATH=~/.cargo/bin:$PATH
 
 #
 # ALIASES
@@ -36,17 +39,18 @@ alias adb="/Users/oli/Library/Android/sdk/platform-tools/adb"
 alias python='python3'
 alias lg='lazygit'
 alias nv='nvim'
-alias am='bash ~/.config/applemusic/am.sh'
-alias neofetch='neofetch --source /Users/oli/.config/neofetch/ascii.txt'
+alias clear="printf '\033[2J\033[3J\033[1;1H'"
 
-function ll {
-  cd "$(walk "$@")"
+function ll() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
-#
-# PLUGINS
-#
-plugins=()
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
